@@ -1,0 +1,63 @@
+create database cadastros
+use cadastros
+
+create table alunos (
+	id int identity not null,
+	
+	cpf varchar(11),
+	nome varchar(50) NOT NULL,
+	CONSTRAINT PK_alunos primary key(id),
+)
+
+create table materias(
+	idmat int NOT NULL identity,
+	nomemat varchar(50) NOT NULL,
+	CONSTRAINT PK_materias primary key(idmat),
+)
+
+create table notas(
+	idnota int NOT NULL identity,
+	idaluno int,
+	idmat int,
+	p1 decimal NOT NULL,
+	p2 decimal NOT NULL,	
+	
+	CONSTRAINT PK_notas primary key(idnota),
+	--CONSTRAINT FK_notas 
+	 FOREIGN KEY (idaluno) REFERENCES   alunos(id),
+	--CONSTRAINT FK_notas 
+	FOREIGN KEY (idmat) REFERENCES  materias(idmat),
+	
+)
+select * from alunos 
+
+select  * from materias
+
+select * from  notas  
+
+update  notas set idaluno =3 where idnota ='3'
+
+select * from alunos as  a inner  join notas  as n 
+on a.id = n.idnota inner join materias as m on n.idaluno
+= m.idmat;
+
+insert into alunos values (' Henrique','11111111111')
+
+insert into materias values ('C#')
+
+insert into notas values ('1','1','9','7')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
