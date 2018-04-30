@@ -1,5 +1,5 @@
 create database cadastros
-use cadastros
+use cadastros,
 
 create table alunos (
 	id int identity not null,
