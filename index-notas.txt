@@ -1,0 +1,97 @@
+@model crud_basico.Models.nota
+
+@{
+    ViewBag.Title = "Details";
+    var total = 0;
+    decimal total2 = total;
+    total2 = (Model.nota1 + Model.nota2) / 2;
+
+}
+<h2>Details</h2>
+
+<div>
+    <h4>nota</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.aluno.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aluno.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.materia.nomemat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.materia.nomemat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.nota1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nota1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nota2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nota2)
+        </dd>
+        <dt>
+            @Html.DisplayName("Média")
+        </dt>
+        <dd>
+            @total2
+        </dd>
+        <dt>
+            @Html.DisplayName("Mensalidade")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.materia.valor)
+        </dd>
+        <dt>
+            @Html.DisplayName("Situação")
+        </dt>
+        <dd>
+            @if (total2 > 7) {
+            @Html.DisplayName("Aprovado")
+            } else {
+                @Html.DisplayName("Reprovado")
+            }
+        </dd>
+        <dt>
+            @Html.DisplayName("Valor com Desconto")
+        </dt>
+        <dd>
+                @{
+                    var desc = 0m;
+
+
+                    if (total2 >= 9)
+                    {
+                        desc = (Model.materia.valor - (Model.materia.valor * 90) / 100);
+                        string sa = desc.ToString("0.00");
+                    @sa
+
+                    }
+                    else if (total2 >= 7) {
+                        desc = (Model.materia.valor - (Model.materia.valor * 90) / 100);
+                        string sa = desc.ToString("0.00");
+                    @sa
+                    } else {
+                    @Html.DisplayName("Sem desconto")
+                        }
+                  }
+          </dd>
+       </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idnota }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
