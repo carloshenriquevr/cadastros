@@ -1,0 +1,62 @@
+@model IEnumerable<crud_basico.Models.nota>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nome do Aluno")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.materia.nomemat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nota1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nota2)
+        </th>
+        <th>
+            @Html.DisplayName("Media")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    var total = 0;
+    decimal total2 = total;
+    total2 = (item.nota1 + item.nota2) / 2;
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.aluno.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.materia.nomemat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nota1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nota2)
+        </td>
+        <td>
+            @total2
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idnota }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idnota }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idnota })
+        </td>
+    </tr>
+}
+
+</table>
